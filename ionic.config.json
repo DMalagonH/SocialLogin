@@ -2,5 +2,7 @@
   "name": "SocialLogin",
   "app_id": "33d6b9a8",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {
+    "cordova": {}
+  }
 }
