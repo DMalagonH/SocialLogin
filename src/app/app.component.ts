@@ -3,16 +3,18 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NativeStorage } from '@ionic-native/native-storage';
-// import { NavController } from 'ionic-angular';
+import { ViewChild } from '@angular/core';
+import { NavController } from 'ionic-angular';
 
 
 import { HomePage } from '../pages/home/home';
-// import { LoginPage } from '../pages/login/login';
+import { LoginPage } from '../pages/login/login';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-	rootPage:any = HomePage;
+	@ViewChild('myNav') nav: NavController
+	rootPage:any = LoginPage;
 
 	constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, nativeStorage: NativeStorage) {
 		platform.ready().then(() => {
@@ -20,20 +22,20 @@ export class MyApp {
 			// Here you can do any higher level native things you might need.
 
 			// Here we will check if the user is already logged in
-      // // because we don't want to ask users to log in each time they open the app
-			// let self = this;
-      // nativeStorage.getItem('user')
-			// 	.then(function(data){
-			// 		console.log('already exists!');
-			// 		splashScreen.hide();
-			// 	}, function(error){
-			// 		console.log("don't exists");
-			// 		splashScreen.hide();
-			// 	});
+			// because we don't want to ask users to log in each time they open the app
+			let self = this;
+			nativeStorage.getItem('user')
+				.then(function(data){
+					console.log('already exists!');
+					self.nav.push(HomePage);
+					splashScreen.hide();
+				}, function(error){
+					console.log("don't exists");
+					splashScreen.hide();
+				});
 
-				// navCtrl.push(LoginPage);
-				statusBar.styleDefault();
-				splashScreen.hide();
+			statusBar.styleDefault();
+			splashScreen.hide();
 		});
 	}
 }
