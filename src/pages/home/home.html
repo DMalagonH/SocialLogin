@@ -1,19 +1,30 @@
 <ion-header>
 	<ion-navbar>
 		<ion-title>
-			Social Login
+			Inicio
 		</ion-title>
 	</ion-navbar>
 </ion-header>
 
-<ion-content padding> 
+<ion-content padding>
+
+	<ion-card>
+		<img src="{{ user.picture }}"/>
+		<ion-card-content>
+			<ion-card-title>
+				{{ user.name }}
+			</ion-card-title>
+			<p>{{ user.gender }}</p>
+		</ion-card-content>
+
+	</ion-card>
+
     <!-- Float the icon right -->
-	<button ion-button icon-left block>
-		<ion-icon name="logo-facebook"></ion-icon>
-		Ingresar con Facebook
+	<button ion-button icon-left block (tap)="goToLogin()" >
+		Iniciar sesión
 	</button>
-	<button ion-button icon-left block color="danger">
-		<ion-icon name="logo-google"></ion-icon>
-		Ingresar con Google
+
+	<button ion-button icon-left block (tap)="logout()" >
+		Cerrar sesión
 	</button>
 </ion-content>
